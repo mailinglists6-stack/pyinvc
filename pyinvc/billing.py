@@ -16,7 +16,16 @@ class Billing:
         PATCH = 4
         PUT = 5
 
-    def __init__(self, *, base_url: str = None, secret_token: str = None, user_id: int, filters: str = None):
+    def __init__(
+            self,
+            *,
+            base_url: str = None,
+            secret_token: str = None,
+            user_id: int,
+            filters: str = None,
+            request_timeout: int = 60,
+    ):
+        self.request_timeout = request_timeout
         self.BASE_URL = base_url or config("BILLING_BASE_URL")
         self.HEADER = {
             "Authorization": secret_token or f"Bearer {config("BILLING_SECRET_TOKEN")}",
@@ -40,11 +49,11 @@ class Billing:
 
     async def get(self, url: str, data: dict = None):
         async with httpx.AsyncClient() as client:
-            return await client.get(url=url, headers=self.HEADER, params=data)
+            return await client.get(url=url, headers=self.HEADER, params=data, timeout=self.request_timeout)
 
     async def post(self, url: str, data: dict = None) -> Response:
         async with httpx.AsyncClient() as client:
-            return await client.post(url=url, headers=self.HEADER, json=data)
+            return await client.post(url=url, headers=self.HEADER, json=data, timeout=self.request_timeout)
 
     async def request(self, url: str, method: int, data: dict = None):
         match method:

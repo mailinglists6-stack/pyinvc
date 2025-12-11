@@ -2,7 +2,7 @@
 name = "philia-pyinvc"
 version = "0.1.37"
 description = ""
-authors = ["Alireza <arg274@gmail.com>", "amirredhat <a.charehei@limoo.host>"]
+authors = ["Philia <mailinglists6@gmail.com>"]
 readme = "README.md"
 packages = [{ include = "pyinvc" }]
 

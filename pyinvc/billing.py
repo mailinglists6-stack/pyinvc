@@ -272,3 +272,30 @@ class Billing:
             method=Billing.RequestMethod.POST.value,
             data=item,
         )
+
+    async def add_invoice_items_async(self, invoice_id: int, items: List[dict]) -> Response:
+        return await self.request(
+            url=f"{self.BASE_URL}/item/{invoice_id}",
+            method=Billing.RequestMethod.POST.value,
+            data={"items": items},
+        )
+
+    def add_invoice_items_sync(self, invoice_id: int, items:List[dict]) -> Response:
+        return asyncio.run(self.add_invoice_items_async(
+            invoice_id=invoice_id,
+            items=items,
+            )
+        )
+
+    async def delete_invoice_item_async(self, invoice_id: int, invoice_item_id: int) -> Response:
+        return await self.request(
+            url=f"{self.BASE_URL}/item/{invoice_id}/{invoice_item_id}",
+            method=Billing.RequestMethod.DELETE.value,
+        )
+
+    def delete_invoice_item_sync(self, invoice_id: int, invoice_item_id: int) -> Response:
+        return asyncio.run(self.delete_invoice_item_async(
+            invoice_id=invoice_id,
+            invoice_item_id=invoice_item_id,
+            )
+        )

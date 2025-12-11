@@ -13,3 +13,7 @@
 ### Version 0.0.2 - 2026/12/11
 - add `add_invoice_items` instance method.
 - add `delete_invoice_item` instance method.
+
+### Version 0.1.0 - 2026/12/11
+- rename `root` folder.
+

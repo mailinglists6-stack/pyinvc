@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "philia-pyinvc"
-version = "0.0.2"
+version = "0.1.0"
 description = ""
 authors = ["Philia <mailinglists6@gmail.com>"]
 readme = "README.md"
